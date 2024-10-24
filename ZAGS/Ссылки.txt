@@ -1,0 +1,28 @@
+Анализ требований:
+https://docs.google.com/spreadsheets/d/1TXTDiUQ9yWr3KOxm0LqhQNoyCGdCbOiasYt1sUz-y5U/edit?usp=sharing
+
+Декомпозиция:
+https://miro.com/app/board/uXjVLbEdIRA=/
+
+Чек-лист проверок:
+https://docs.google.com/spreadsheets/d/1TGg4xad5sgmeqwHmrYoGmSewOibcviY7H7MZ8H01F6A/edit?usp=sharing
+
+Тест-план:
+https://docs.google.com/spreadsheets/d/1l6NKubUoqqWM8eW9U9L3HBQRDtTRx1zPOeILeGCLCjc/edit?usp=sharing
+
+Тест-кейсы:
+https://team-4h2q.testit.software/projects/3/tests
+
+Данные валидации: 
+https://docs.google.com/spreadsheets/d/1Ja2K3AIxBG9Jyg_LP76GH8L1UehbLpEgHypKnKu8exU/edit?usp=sharing
+
+Баг-репорты:
+https://nataliazimina.youtrack.cloud/issues
+
+Отчёт по итогам тестирования:
+https://docs.google.com/spreadsheets/d/1u7PkDOlTZLcL18bjFdyG9YD160FWjL6bXijOTX-YhAo/edit?usp=sharing
+
+
+
+
+

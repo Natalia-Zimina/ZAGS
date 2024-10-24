@@ -1,0 +1,106 @@
+      1. Найти общее количество заявителей.
+
+SELECT count(*) FROM reg_office.applicants 
+
+      2. Вывести все данные о заявителях по имени Иван.
+
+SELECT * FROM reg_office.applicants where "name" like 'Иван'
+
+      3. Вывести только уникальные записи о гражданах.
+
+SELECT distinct * FROM reg_office.citizens
+
+      4. Вывести самый большой номер заявки.
+
+SELECT max(applicationid) FROM reg_office.applications
+
+      5. Вывести только уникальные имя, фамилию и отчество заявителей с белорусским паспортом.
+
+SELECT distinct "name", surname, middlename, passportnumber  FROM reg_office.applicants where passportnumber like 'KH_______'
+
+      6. Вывести всю информацию по заявкам, номера которых в диапазоне 31180 и 31232, и отсортировать по номеру пользователя по убыванию.
+
+SELECT * FROM reg_office.applications where applicationid between  31180 and 31232 order by citizenid desc 
+
+      7. Вывести 25 записей по заявкам, созданным начиная со 2 июня 2024 года. 
+
+SELECT * FROM reg_office.applications where dateofapplication >='2024-06-02' limit 25 
+
+      8. Вывести все записи о рожденных в г. Москва, учитывая возможные ошибки в написании  города с большой буквы. 
+
+SELECT * FROM reg_office.birthcertificates where placeofbirth like '%осква' 
+  
+      9. Вывести все записи о рожденных не в г. Москва, сортируя по номеру регистрации в порядке возрастания.
+
+SELECT * FROM reg_office.birthcertificates where placeofbirth not like '%осква' order by birthcertificateid 
+
+     10. Вывести всех граждан, у которых есть фотография.
+
+SELECT * FROM reg_office.citizens where image is not null
+
+     11. Вывести уникальные записи о гражданах, у которых пол указан по-английски (Male/Female) , сортируя по фамилии.
+
+SELECT distinct * FROM reg_office.citizens where gender in ('Male', 'Female') order by surname
+
+     12. Вывести имена и номера телефонов (назвать столбец Contact) всех сотрудников, у которых номер телефона начинается с 7.
+
+SELECT "name", phonenumber as Contact FROM reg_office.staff where phonenumber  like '7%'
+
+     13. Вывести данные о тех, кто не сменил фамилию после брака.
+
+SELECT * FROM reg_office.merrigecertificates where newsurnameofspouse is null
+
+select * from reg_office.merrigecertificates where surnameofspouse=newsurnameofspouse 
+
+     14. Вывести для администраторов сколько раз встречаются фамилии одинаковой длины. 
+
+select length(surname) as "Длина фамилии", count(length(surname)) as "Кол-во вхождений"
+from reg_office.staff group by length(surname) order by 1
+
+     15. Вывести подтвержденные(одобренные) заявки на услугу ‘о браке’ за период с 01.01.2024 по 31.05.2024 в виде (данные заявки + фио телефон работника, одобрившего заявление).
+
+select applicationid, citizenid, applicantid,  dateofapplication, kindofapplication, statusofapplication, phonenumber
+from reg_office.applications 
+join reg_office.staff on reg_office.applications.staffid = reg_office.staff.staffid
+where kindofapplication = 'Получение свидетельства о браке' and statusofapplication = 'approved' and dateofapplication
+BETWEEN '2024-05-31' AND '2024-06-30'
+
+     16. Вывести заявки на услугу ‘о браке’ последние 3 дня кроме подтвержденных(одобренных) (имеющих статус approved).
+
+select * from reg_office.applications
+where kindofapplication = 'Получение свидетельства о браке' and statusofapplication = 'approved'
+and dateofapplication >= now() - interval '3 DAY'
+
+      17. Вывести максимально полную информацию о размещенных заявках “Регистрация брака” со статусом “одобрено” за последние 25 дней.
+
+select * from  reg_office.applications  
+join reg_office.merrigecertificates on reg_office.applications.citizenid =reg_office.merrigecertificates.citizenid
+where kindofapplication = 'Получение свидетельства о браке' and statusofapplication = 'approved'
+and dateofapplication >= now() - interval '25 DAY'
+ 
+      18. Вывести количество зарегистрированных заявлений по каждому из видов заявлений, результат отсортировать по убыванию количества заявлений. 
+
+select kindofapplication, count(kindofapplication) as Количество 
+from reg_office.applications
+group by kindofapplication
+order by Количество desc
+
+       19. Вывести количество зарегистрированных и одобренных заявлений по каждому из видов.
+
+select kindofapplication , statusofapplication,  count(kindofapplication) as Количество 
+from reg_office.applications
+group by kindofapplication, statusofapplication
+having statusofapplication = 'approved'
+order by Количество desc
+
+      20. Вывести имена админов с максимальной длиной имени.
+
+select name, surname from reg_office.staff where length(name)= (SELECT max(length(name)) from reg_office.staff )
+
+
+
+
+
+
+
+

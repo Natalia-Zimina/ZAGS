@@ -1,0 +1,3553 @@
+{
+	"info": {
+		"_postman_id": "0be03751-b009-4737-aa42-36ff24ab6884",
+		"name": "ЗАГС_now",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28309530"
+	},
+	"item": [
+		{
+			"name": "1 путь. Создание и одобрение заявки на брак.",
+			"item": [
+				{
+					"name": "1. Создание заявки на брак",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"merrigecertificateid\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"Чернов\",\r\n    \"personalFirstName\": \"Олег\",\r\n    \"personalMiddleName\": \"Порфирьевич\",\r\n    \"personalPhoneNumber\": \"89305556677\",\r\n    \"personalNumberOfPassport\": \"2217 999999\",\r\n\r\n    \"citizenLastName\": \"Чернов\",\r\n    \"citizenFirstName\": \"Олег\",\r\n    \"citizenMiddleName\": \"Порфирьевич\",\r\n    \"citizenBirthDate\": \"2000-12-12\",\r\n    \"citizenNumberOfPassport\": \"2217 999999\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": \"2024-10-18\",\r\n    \"newLastName\": \"Чернова\",\r\n    \"anotherPersonLastName\": \"Мирошниченко\",\r\n    \"anotherPersonFirstName\": \"Юлия\",\r\n    \"anotherPersonMiddleName\": \"Полуэктовна\",\r\n    \"birth_of_anotoherPerson\": \"1999-11-11\",\r\n    \"anotherPersonPassport\": \"2217 888888\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Создание администратора",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"requestId\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2022-09-09\",\r\n\"personalFirstName\": \"Елизаветта\",\r\n\"personalLastName\": \"Неожиданная\",\r\n\"personalMiddleName\": \"Олеговна\",\r\n\"personalNumberOfPassport\": \"2217 111111\",\r\n\"personalPhoneNumber\": \"89306667799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Получение списка заявок",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplications",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Одобрение заявки администратором",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": {{server_applId}},\r\n  \"staffid\": 20064,\r\n  \"action\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Проверка статуса заявки.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplStatus/{{server_Id}}",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplStatus",
+								"{{server_Id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Невалидные данные.",
+			"item": []
+		},
+		{
+			"name": "Администрирование с невалидными данными",
+			"item": [
+				{
+					"name": "Создание администратора с не заполненными полями(кроме даты)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"\",\r\n\"personalLastName\": \"\",\r\n\"personalMiddleName\": \"\",\r\n\"personalNumberOfPassport\": \"\",\r\n\"personalPhoneNumber\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора. В поле даты несуществующий год.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"9999-01-15\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора со значением в поле даты 31.02.2000",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-02-31\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора. Неверный формат даты в поле \"дд.мм.гггг\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"15.01.2000\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора с цифрами во всех полях",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"454545465\",\r\n\"personalLastName\": \"215345646\",\r\n\"personalMiddleName\": \"546464654\",\r\n\"personalNumberOfPassport\": \"22134567\",\r\n\"personalPhoneNumber\": \"893044499\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора со спецсимволами во всех полях(кроме даты)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"**$$%%^##*\",\r\n\"personalLastName\": \"$%$^%^&%\",\r\n\"personalMiddleName\": \"$%$&^^&\",\r\n\"personalNumberOfPassport\": \"**&##%^^**\",\r\n\"personalPhoneNumber\": \"%$$^^&%^&#\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора с латиницей во всех полях(кроме даты)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"Elena\",\r\n\"personalLastName\": \"Soboleva\",\r\n\"personalMiddleName\": \"Pavlovna\",\r\n\"personalNumberOfPassport\": \"pasport\",\r\n\"personalPhoneNumber\": \"PhoneNumbe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора с не существующей датой рождения",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"9999-99-99\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора с одним символом во всех полях(кроме даты)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"Е\",\r\n\"personalLastName\": \"С\",\r\n\"personalMiddleName\": \"П\",\r\n\"personalNumberOfPassport\": \"2\",\r\n\"personalPhoneNumber\": \"8\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора с большим количеством символов во всех полях",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"Еленааааааааааааааааааааааааааааааааа\",\r\n\"personalLastName\": \"Соболевааааааааааааааааааааааааааааааа\",\r\n\"personalMiddleName\": \"Павловнааааааааааааааааааааааааааааа\",\r\n\"personalNumberOfPassport\": \"2217234567000000000\",\r\n\"personalPhoneNumber\": \"89304447799000000000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр заявки с несуществующм ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplStatus/55555",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplStatus",
+								"55555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр заявки без ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", () => {\r",
+									"  pm.response.to.have.status(404);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplStatus/",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplStatus",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Одобрение заявки с не валидными данными",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": \"99999\",\r\n  \"staffid\": \"00000\",\r\n  \"action\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Одобрение заявки с не существующим \"applId\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": 99999,\r\n  \"staffid\": 19701,\r\n  \"action\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Одобрение заявки с не существующим \"staffid\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": 38834,\r\n  \"staffid\": 99999,\r\n  \"action\": \"approved\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Одобрение заявки без тела запроса",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отклонение заявки с не валидными данными",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": \"00000\",\r\n  \"staffid\": \"99999\",\r\n  \"action\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отклонение заявки с не существующим \"applId\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": 99999,\r\n  \"staffid\": 19701,\r\n  \"action\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отклонение заявки с несуществующим \"staffid\"",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": 38782,\r\n  \"staffid\": 99999,\r\n  \"action\": \"rejected\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отклонение заявки с пустым телом запроса",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Пользователи с невалидными данными",
+			"item": [
+				{
+					"name": "Заявка на брак/минимальное количество символов",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);",
+									"});",
+									"pm.test(\"Body contains string\",() => {",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mode\": \"wedding\", \n\n    \"personalLastName\": \"С\",\n    \"personalFirstName\": \"А\",\n    \"personalMiddleName\": \"И\",\n    \"personalPhoneNumber\": \"8\",\n    \"personalNumberOfPassport\": \"2\",\n\n    \"citizenLastName\": \"С\",\n    \"citizenFirstName\": \"А\",\n    \"citizenMiddleName\": \"И\",\n    \"citizenBirthDate\": \"2000-02-01\",\n    \"citizenNumberOfPassport\": \"2\",\n    \"citizenGender\": \"М\",\n\n    \"dateOfMarriage\": \"2000-11-31\",\n    \"newLastName\": \"С\",\n    \"anotherPersonLastName\": \"Р\",\n    \"anotherPersonFirstName\": \"А\",\n    \"anotherPersonMiddleName\": \"И\",\n    \"birth_of_anotoherPerson\": \"2001-02-03\",\n    \"anotherPersonPassport\": \"2\",\n\n    \"birth_place\": null,\n    \"birth_mother\": null,\n    \"birth_father\": null,\n\n    \"death_dateOfDeath\": null,\n    \"death_placeOfDeath\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/большое количество символов",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);",
+									"});",
+									"pm.test(\"Body contains string\",() => {",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mode\": \"wedding\", \n\n    \"personalLastName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"personalFirstName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"personalMiddleName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkd\",\n    \"personalPhoneNumber\": \"прапррпропроррпо\",\n    \"personalNumberOfPassport\": \"dhfkflggjhdghsj\",\n\n    \"citizenLastName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"citizenFirstName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"citizenMiddleName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"citizenBirthDate\": \"2000-01-01\",\n    \"citizenNumberOfPassport\": \"dhfkflggjhdghsjррр\",\n    \"citizenGender\": \"dhfkflggjhdghsjkflрg\",\n\n    \"dateOfMarriage\": \"2000-02-02\",\n    \"newLastName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"anotherPersonLastName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"anotherPersonFirstName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"anotherPersonMiddleName\": \"dhfkflggjhdghsjskflglhjffbhjcvkdkdhfghjfkjdkdk\",\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\n    \"anotherPersonPassport\": \"dhfkflggjhdghsjррррр\",\n\n    \"birth_place\": null,\n    \"birth_mother\": null,\n    \"birth_father\": null,\n\n    \"death_dateOfDeath\": null,\n    \"death_placeOfDeath\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/во всех полях пробелы",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"       \",\r\n    \"personalFirstName\": \"        \",\r\n    \"personalMiddleName\": \"          \",\r\n    \"personalPhoneNumber\": \"         \",\r\n    \"personalNumberOfPassport\": \"           \",\r\n\r\n    \"citizenLastName\": \"              \",\r\n    \"citizenFirstName\": \"               \",\r\n    \"citizenMiddleName\": \"                 \",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"            \",\r\n    \"citizenGender\": \"              \",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \" \",\r\n    \"anotherPersonLastName\": \"               \",\r\n    \"anotherPersonFirstName\": \"                 \",\r\n    \"anotherPersonMiddleName\": \"            \",\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": \"        \",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/ во всех полях цифры",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"654654654654\",\r\n    \"personalFirstName\": \"6865654654654\",\r\n    \"personalMiddleName\": \"1651651651651\",\r\n    \"personalPhoneNumber\": \"89304445566\",\r\n    \"personalNumberOfPassport\": \"265165165165\",\r\n\r\n    \"citizenLastName\": \"51651651651651\",\r\n    \"citizenFirstName\": \"51651651651651\",\r\n    \"citizenMiddleName\": \"161651651651561\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"2217123456\",\r\n    \"citizenGender\": \"16516556156\",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \"656516556156\",\r\n    \"anotherPersonLastName\": \"6516516556651\",\r\n    \"anotherPersonFirstName\": \"1561651651651\",\r\n    \"anotherPersonMiddleName\": \"655616516516565\",\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": \"161651651651\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/во всех полях русские буквы",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"ыоларыварлыоврал\",\r\n    \"personalFirstName\": \"фыафыафыафыа\",\r\n    \"personalMiddleName\": \"выпвапвапвы\",\r\n    \"personalPhoneNumber\": \"выпвапвапвы\",\r\n    \"personalNumberOfPassport\": \"ывапывывывп\",\r\n\r\n    \"citizenLastName\": \"ывпывывпывп\",\r\n    \"citizenFirstName\": \"ывпывпывпывп\",\r\n    \"citizenMiddleName\": \"ывпывпывыв\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"ывпывпывпыв\",\r\n    \"citizenGender\": \"пывпывпывп\",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \"ывпывпывпыв\",\r\n    \"anotherPersonLastName\": \"пывпывпы\",\r\n    \"anotherPersonFirstName\": \"ывпывпывпывп\",\r\n    \"anotherPersonMiddleName\": \"ывпывпывпы\",\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": \"ывпывпывпып\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/во всех полях буквы разных алфавитов",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"μαöÇçز ح ط\",\r\n    \"personalFirstName\": \"μαöÇçز ح ط\",\r\n    \"personalMiddleName\": \"μαöÇçز ح ط”\",\r\n    \"personalPhoneNumber\": \"μαöÇçز ح ط”\",\r\n    \"personalNumberOfPassport\": \"μαöÇçز ح ط\",\r\n\r\n    \"citizenLastName\": \"μαöÇçز ح ط”\",\r\n    \"citizenFirstName\": \"μαöÇçز ح ط”\",\r\n    \"citizenMiddleName\": \"μαöÇçز ح ط”\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"μαöÇçز ح ط”\",\r\n    \"citizenGender\": \"μαöÇçز ح ط”\",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \"μαöÇçز ح ط”\",\r\n    \"anotherPersonLastName\": \"μαöÇçز ح ط”\",\r\n    \"anotherPersonFirstName\": \"μαöÇçز ح ط”\",\r\n    \"anotherPersonMiddleName\": \"μαöÇçز ح ط”\",\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": \"μαöÇçز ح ط”\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/во всех полях спецсимволы",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"/*-+.,\",\r\n    \"personalFirstName\": \"/*-+.,\",\r\n    \"personalMiddleName\": \"/*-+.,\",\r\n    \"personalPhoneNumber\": \"/*-+.,\",\r\n    \"personalNumberOfPassport\": \"/*-+.,\",\r\n\r\n    \"citizenLastName\": \"/*-+.,\",\r\n    \"citizenFirstName\": \"/*-+.,\",\r\n    \"citizenMiddleName\": \"/*-+.,\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"/*-+.,\",\r\n    \"citizenGender\": \"/*-+.,\",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \"/*-+.,\",\r\n    \"anotherPersonLastName\": \"/*-+.,\",\r\n    \"anotherPersonFirstName\": \"/*-+.,\",\r\n    \"anotherPersonMiddleName\": \"/*-+.,\",\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": \"/*-+.,\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/все поля пустые",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": null,\r\n    \"personalFirstName\": null,\r\n    \"personalMiddleName\": null,\r\n    \"personalPhoneNumber\": null,\r\n    \"personalNumberOfPassport\": null,\r\n\r\n    \"citizenLastName\": null,\r\n    \"citizenFirstName\": null,\r\n    \"citizenMiddleName\": null,\r\n    \"citizenBirthDate\": null,\r\n    \"citizenNumberOfPassport\": null,\r\n    \"citizenGender\": null,\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": \"2000-01-01\",\r\n    \"anotherPersonPassport\": null,\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/в поле дата несуществующий год",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"TEST_P_last_name\",\r\n    \"personalFirstName\": \"TEST_P_first_name\",\r\n    \"personalMiddleName\": \"TEST_P_middle_name\",\r\n    \"personalPhoneNumber\": \"89304445566\",\r\n    \"personalNumberOfPassport\": \"123456\",\r\n\r\n    \"citizenLastName\": \"TEST_C_last_name\",\r\n    \"citizenFirstName\": \"TEST_P_first_name\",\r\n    \"citizenMiddleName\": \"TEST_P_middle_name\",\r\n    \"citizenBirthDate\": \"9999-01-01\",\r\n    \"citizenNumberOfPassport\": \"123456\",\r\n    \"citizenGender\": \"TEST_gender\",\r\n\r\n    \"dateOfMarriage\": \"9999-01-02\",\r\n    \"newLastName\": \"TEST_NEW_last_name\",\r\n    \"anotherPersonLastName\": \"TEST_AP_last_name\",\r\n    \"anotherPersonFirstName\": \"TEST_AP_first_name\",\r\n    \"anotherPersonMiddleName\": \"TEST_AP_middle_name\",\r\n    \"birth_of_anotoherPerson\": \"9999-01-01\",\r\n    \"anotherPersonPassport\": \"123456\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/в поле даты несуществующие значения",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"Смирнов\",\r\n    \"personalFirstName\": \"Андрей\",\r\n    \"personalMiddleName\": \"Иванович\",\r\n    \"personalPhoneNumber\": \"89304445566\",\r\n    \"personalNumberOfPassport\": \"2217 123456\",\r\n\r\n    \"citizenLastName\": \"Смирнов\",\r\n    \"citizenFirstName\": \"Андрей\",\r\n    \"citizenMiddleName\": \"Иванович\",\r\n    \"citizenBirthDate\": \"9999-99-99\",\r\n    \"citizenNumberOfPassport\": \"2217 123456\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": \"9999-99-99\",\r\n    \"newLastName\": \"Смирнова\",\r\n    \"anotherPersonLastName\": \"Рябова\",\r\n    \"anotherPersonFirstName\": \"Анна\",\r\n    \"anotherPersonMiddleName\": \"Игоревна\",\r\n    \"birth_of_anotoherPerson\": \"9999-99-99\",\r\n    \"anotherPersonPassport\": \"2218 123456\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/в поле дата год=нули",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"TEST_P_last_name\",\r\n    \"personalFirstName\": \"TEST_P_first_name\",\r\n    \"personalMiddleName\": \"TEST_P_middle_name\",\r\n    \"personalPhoneNumber\": \"89304445566\",\r\n    \"personalNumberOfPassport\": \"123456\",\r\n\r\n    \"citizenLastName\": \"TEST_C_last_name\",\r\n    \"citizenFirstName\": \"TEST_P_first_name\",\r\n    \"citizenMiddleName\": \"TEST_P_middle_name\",\r\n    \"citizenBirthDate\": \"0000-01-01\",\r\n    \"citizenNumberOfPassport\": \"123456\",\r\n    \"citizenGender\": \"TEST_gender\",\r\n\r\n    \"dateOfMarriage\": \"0000-02-02\",\r\n    \"newLastName\": \"TEST_NEW_last_name\",\r\n    \"anotherPersonLastName\": \"TEST_AP_last_name\",\r\n    \"anotherPersonFirstName\": \"TEST_AP_first_name\",\r\n    \"anotherPersonMiddleName\": \"TEST_AP_middle_name\",\r\n    \"birth_of_anotoherPerson\": \"0000-01-01\",\r\n    \"anotherPersonPassport\": \"123456\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак/дата в другом формате",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									" pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"TEST_P_last_name\",\r\n    \"personalFirstName\": \"TEST_P_first_name\",\r\n    \"personalMiddleName\": \"TEST_P_middle_name\",\r\n    \"personalPhoneNumber\": \"89304445566\",\r\n    \"personalNumberOfPassport\": \"123456\",\r\n\r\n    \"citizenLastName\": \"TEST_C_last_name\",\r\n    \"citizenFirstName\": \"TEST_P_first_name\",\r\n    \"citizenMiddleName\": \"TEST_P_middle_name\",\r\n    \"citizenBirthDate\": \"01.01.2000\",\r\n    \"citizenNumberOfPassport\": \"123456\",\r\n    \"citizenGender\": \"TEST_gender\",\r\n\r\n    \"dateOfMarriage\": \"31.03.2000\",\r\n    \"newLastName\": \"TEST_NEW_last_name\",\r\n    \"anotherPersonLastName\": \"TEST_AP_last_name\",\r\n    \"anotherPersonFirstName\": \"TEST_AP_first_name\",\r\n    \"anotherPersonMiddleName\": \"TEST_AP_middle_name\",\r\n    \"birth_of_anotoherPerson\": \"01.01.2000\",\r\n    \"anotherPersonPassport\": \"123456\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Заявка на брак. В полях даты 31.02",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"Смирнов\",\r\n    \"personalFirstName\": \"Андрей\",\r\n    \"personalMiddleName\": \"Иванович\",\r\n    \"personalPhoneNumber\": \"89304447799\",\r\n    \"personalNumberOfPassport\": \"2217 356789\",\r\n\r\n    \"citizenLastName\": \"Смирнов\",\r\n    \"citizenFirstName\": \"Андрей\",\r\n    \"citizenMiddleName\": \"Иванович\",\r\n    \"citizenBirthDate\": \"1900-02-31\",\r\n    \"citizenNumberOfPassport\": \"2217 356789\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": \"2025-02-31\",\r\n    \"newLastName\": \"Смирнова\",\r\n    \"anotherPersonLastName\": \"Рябова\",\r\n    \"anotherPersonFirstName\": \"Анна\",\r\n    \"anotherPersonMiddleName\": \"Игоревна\",\r\n    \"birth_of_anotoherPerson\": \"1915-02-31\",\r\n    \"anotherPersonPassport\": \"2217 222333\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание заявки на рождение. Не валидные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": {{Serv_mode}}, \r\n\r\n    \"personalLastName\": {{Serv_personalLastName}},\r\n    \"personalFirstName\": {{Serv_personalFirstName}},\r\n    \"personalMiddleName\": {{Serv_personalMiddleName}},\r\n    \"personalPhoneNumber\": {{Serv_personalPhoneNumber}},\r\n    \"personalNumberOfPassport\": {{Serv_personalNumberOfPassport}},\r\n\r\n    \"citizenLastName\": {{Serv_citizenLastName}},\r\n    \"citizenFirstName\": {{Serv_citizenFirstName}},\r\n    \"citizenMiddleName\": {{Serv_citizenMiddleName}},\r\n    \"citizenBirthDate\": {{Serv_citizenBirthDate}},\r\n    \"citizenNumberOfPassport\": {{Serv_citizenNumberOfPassport}},\r\n    \"citizenGender\": {{Serv_citizenGender}},\r\n\r\n    \"dateOfMarriage\": null,\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": null,\r\n    \"anotherPersonPassport\": null,\r\n\r\n    \"birth_place\": {{Serv_birth_place}},\r\n    \"birth_mother\": {{Serv_birth_mother}},\r\n    \"birth_father\": {{Serv_birth_father}},\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание заявки на смерть. Не валидные данные",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 or 500\", () => {\r",
+									"  pm.expect(pm.response.code).to.be.oneOf([400,500]);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include.to.be.oneOf([\"error\", \"Bad request!\"]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"death\",\r\n    \"personalLastName\": {{S_personalLastName}},\r\n    \"personalFirstName\": {{S_personalFirstName}},\r\n    \"personalMiddleName\": {{S_personalMiddleName}},\r\n    \"personalPhoneNumber\": {{S_personalPhoneNamber}},\r\n    \"personalNumberOfPassport\": {{S_personalNumberOfPasport}},\r\n    \"citizenLastName\": {{S_citizenLastName}},\r\n    \"citizenFirstName\": {{S_citizenFirstName}},\r\n    \"citizenMiddleName\": {{S_citizenMiddleName}},\r\n    \"citizenBirthDate\": {{S_citizenBirthDate}},\r\n    \"citizenNumberOfPassport\": {{S_citizenNumberOfPassport}},\r\n    \"citizenGender\": {{S_citizenGender}},\r\n    \"dateOfMarriage\": null,\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": null,\r\n    \"anotherPersonPassport\": null,\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n    \"death_dateOfDeath\": {{S_death_dateOfDeath}},\r\n    \"death_placeOfDeath\": {{S_death_placeOfDeath}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2 путь. Создание и отклонение заявки на смерть.",
+			"item": [
+				{
+					"name": "Создание заявки на смерть.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"deathcertificateid\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"mode\": \"death\", \r\n\r\n    \"personalLastName\": \"Смирнов\",\r\n    \"personalFirstName\": \"Андрей\",\r\n    \"personalMiddleName\": \"Иванович\",\r\n    \"personalPhoneNumber\": \"89304446564\",\r\n    \"personalNumberOfPassport\": \"2217 123456\",\r\n\r\n    \"citizenLastName\": \"Смирнов\",\r\n    \"citizenFirstName\": \"Андрей\",\r\n    \"citizenMiddleName\": \"Иванович\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"2217 123456\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": null,\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": null,\r\n    \"anotherPersonPassport\": null,\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": \"2020-02-03\",\r\n    \"death_placeOfDeath\": \"Санкт Петербург\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendUserRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendUserRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Создание администратора.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"requestId\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/sendAdminRequest",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"sendAdminRequest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Получение списка заявок",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplications",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Отклонение заявки администратором",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"applId\": {{Gl_applId}},\r\n  \"staffid\": {{Gl_staffid}},\r\n  \"action\": {{Gl_action}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://regoffice.senla.eu/requestProcess",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"requestProcess"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Просмотр заявки с существующим ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", () => {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+									"});\r",
+									"pm.test(\"Body contains string\",() => {\r",
+									"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "senlatest",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "user",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://regoffice.senla.eu/getApplStatus/{{server_Id}}",
+							"protocol": "https",
+							"host": [
+								"regoffice",
+								"senla",
+								"eu"
+							],
+							"path": [
+								"getApplStatus",
+								"{{server_Id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "1. Создание заявки на брак.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"merrigecertificateid\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mode\": \"wedding\", \r\n\r\n    \"personalLastName\": \"Смирнов\",\r\n    \"personalFirstName\": \"Андрей\",\r\n    \"personalMiddleName\": \"Иванович\",\r\n    \"personalPhoneNumber\": \"89304447799\",\r\n    \"personalNumberOfPassport\": \"2217 356789\",\r\n\r\n    \"citizenLastName\": \"Смирнов\",\r\n    \"citizenFirstName\": \"Андрей\",\r\n    \"citizenMiddleName\": \"Иванович\",\r\n    \"citizenBirthDate\": \"1900-01-01\",\r\n    \"citizenNumberOfPassport\": \"2217 356789\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": \"2000-02-02\",\r\n    \"newLastName\": \"Смирнова\",\r\n    \"anotherPersonLastName\": \"Рябова\",\r\n    \"anotherPersonFirstName\": \"Анна\",\r\n    \"anotherPersonMiddleName\": \"Игоревна\",\r\n    \"birth_of_anotoherPerson\": \"1915-01-31\",\r\n    \"anotherPersonPassport\": \"2217 222333\",\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/sendUserRequest",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"sendUserRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Создание заявки на рождение.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"birthcertificateid\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mode\": \"birth\", \r\n\r\n    \"personalLastName\": {{Serv_personalLaastName}},\r\n    \"personalFirstName\": {{Serv_personalFirstName}},\r\n    \"personalMiddleName\": {{Serv_personalMiiddleName}},\r\n    \"personalPhoneNumber\": {{Serv_personalPhoneNumber}},\r\n    \"personalNumberOfPassport\": {{Serv_personalNumberOfPassport}},\r\n\r\n    \"citizenLastName\": {{Serv_citizenLastName}},\r\n    \"citizenFirstName\": {{Serv_citizenFirstName}},\r\n    \"citizenMiddleName\": {{Serv_citizenMiddleName}},\r\n    \"citizenBirthDate\": {{Serv_citizenBirthDate}},\r\n    \"citizenNumberOfPassport\": {{Serv_citizenNumberOfPassport}},\r\n    \"citizenGender\": {{Serv_citizenGender}},\r\n\r\n    \"dateOfMarriage\": null,\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": null,\r\n    \"anotherPersonPassport\": null,\r\n\r\n    \"birth_place\": {{Serv_birth_place}},\r\n    \"birth_mother\": {{Serv_birth_mother}},\r\n    \"birth_father\": {{Serv_birth_father}},\r\n\r\n    \"death_dateOfDeath\": null,\r\n    \"death_placeOfDeath\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/sendUserRequest",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"sendUserRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Создание заявки на смерть.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"deathcertificateid\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mode\": \"death\", \r\n\r\n    \"personalLastName\": \"Смирнов\",\r\n    \"personalFirstName\": \"Андрей\",\r\n    \"personalMiddleName\": \"Иванович\",\r\n    \"personalPhoneNumber\": \"89304446564\",\r\n    \"personalNumberOfPassport\": \"2217 123456\",\r\n\r\n    \"citizenLastName\": \"Смирнов\",\r\n    \"citizenFirstName\": \"Андрей\",\r\n    \"citizenMiddleName\": \"Иванович\",\r\n    \"citizenBirthDate\": \"2000-01-01\",\r\n    \"citizenNumberOfPassport\": \"2217 123456\",\r\n    \"citizenGender\": \"Мужской\",\r\n\r\n    \"dateOfMarriage\": null,\r\n    \"newLastName\": null,\r\n    \"anotherPersonLastName\": null,\r\n    \"anotherPersonFirstName\": null,\r\n    \"anotherPersonMiddleName\": null,\r\n    \"birth_of_anotoherPerson\": null,\r\n    \"anotherPersonPassport\": null,\r\n\r\n    \"birth_place\": null,\r\n    \"birth_mother\": null,\r\n    \"birth_father\": null,\r\n\r\n    \"death_dateOfDeath\": \"2020-02-03\",\r\n    \"death_placeOfDeath\": \"Санкт Петербург\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/sendUserRequest",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"sendUserRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Получение списка заявок",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://regoffice.senla.eu/getApplications",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"getApplications"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. Просмотр заявки с существующим ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://regoffice.senla.eu/getApplStatus/{{server_Id}}",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"getApplStatus",
+						"{{server_Id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Создание администратора с валидными данными",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"requestId\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"dateofbirth\": \"2000-01-15\",\r\n\"personalFirstName\": \"Елена\",\r\n\"personalLastName\": \"Соболева\",\r\n\"personalMiddleName\": \"Павловна\",\r\n\"personalNumberOfPassport\": \"2217 234567\",\r\n\"personalPhoneNumber\": \"89304447799\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/sendAdminRequest",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"sendAdminRequest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Одобрение заявки администратором с валидными \"applid\" и \"staffid\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"applId\": {{server_applId}},\r\n  \"staffid\": 19701,\r\n  \"action\": \"approved\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/requestProcess",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"requestProcess"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Отклонение заявки администратором с валидными данными",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicantid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"citizenid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"applicationid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"staffid\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"dateofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"kindofapplication\");\r",
+							"});\r",
+							"pm.test(\"Body contains string\",() => {\r",
+							"  pm.expect(pm.response.text()).to.include(\"statusofapplication\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "senlatest",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"applId\": {{Gl_applId}},\r\n  \"staffid\": {{Gl_staffid}},\r\n  \"action\": {{Gl_action}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://regoffice.senla.eu/requestProcess",
+					"protocol": "https",
+					"host": [
+						"regoffice",
+						"senla",
+						"eu"
+					],
+					"path": [
+						"requestProcess"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "senlatest",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "user",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "S_personalLastName",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_personalFirstName",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_personalMiddleName",
+			"value": "\"9874561320\"",
+			"type": "default"
+		},
+		{
+			"key": "S_personalPhoneNamber",
+			"value": "\"ryeuwohfhdjsk\"",
+			"type": "default"
+		},
+		{
+			"key": "S_personalNumberOfPasport",
+			"value": "\"peikmjfkdlvmbnc\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenLastName",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenMiddleName",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenFirstName",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenBirthDate",
+			"value": "\"2000-02-02\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenNumberOfPassport",
+			"value": "\"igghjjkknnbvcxse\"",
+			"type": "default"
+		},
+		{
+			"key": "S_citizenGender",
+			"value": "\"rjfgjrnvkjenkjwnk\"",
+			"type": "default"
+		},
+		{
+			"key": "S_death_placeOfDeath",
+			"value": "\"9874561230\"",
+			"type": "default"
+		},
+		{
+			"key": "S_death_dateOfDeath",
+			"value": "\"1900-12-23\"",
+			"type": "default"
+		},
+		{
+			"key": "S_personalPhoneNumber",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "S_personalNumberOfPassport",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
