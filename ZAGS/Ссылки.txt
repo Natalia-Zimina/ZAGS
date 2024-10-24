@@ -11,13 +11,17 @@ https://docs.google.com/spreadsheets/d/1TGg4xad5sgmeqwHmrYoGmSewOibcviY7H7MZ8H01
 https://docs.google.com/spreadsheets/d/1l6NKubUoqqWM8eW9U9L3HBQRDtTRx1zPOeILeGCLCjc/edit?usp=sharing
 
 Тест-кейсы:
-https://team-4h2q.testit.software/projects/3/tests
+1. https://team-4h2q.testit.software/projects/3/tests
+
+2. https://team-kw5r.testit.software/search
 
 Данные валидации: 
 https://docs.google.com/spreadsheets/d/1Ja2K3AIxBG9Jyg_LP76GH8L1UehbLpEgHypKnKu8exU/edit?usp=sharing
 
 Баг-репорты:
-https://nataliazimina.youtrack.cloud/issues
+1. https://nataliazimina.youtrack.cloud/issues
+
+2. https://parfireva123.youtrack.cloud/dashboard?addwidget=%7B%22settings%22%3A%7B%22customWidgetConfig%22%3A%22%7B%20%5C%22youTrack%5C%22%3A%20%7B%20%5C%22id%5C%22%3A%20%5C%2236a7928e-be82-43ec-9202-b5ac96ed97ff%5C%22%2C%20%5C%22homeUrl%5C%22%3A%20%5C%22https%3A%2F%2Fparfireva123.youtrack.cloud%5C%22%20%7D%2C%20%5C%22search%5C%22%3A%20%5C%22%23issues%20sort%20by%3A%20updated%5C%22%20%7D%22%7D%2C%22widget%22%3A%7B%22id%22%3A%22161-2%22%2C%22%24type%22%3A%22EmbeddingWidget%22%7D%2C%22width%22%3A4%2C%22height%22%3A4%7D
 
 Отчёт по итогам тестирования:
 https://docs.google.com/spreadsheets/d/1u7PkDOlTZLcL18bjFdyG9YD160FWjL6bXijOTX-YhAo/edit?usp=sharing
